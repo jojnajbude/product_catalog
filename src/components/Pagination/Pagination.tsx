@@ -25,13 +25,33 @@ export const Pagination: React.FC<Props> = ({
   perPage,
   currentPage,
   setCurrentPage,
-}) => {
-  const [start, setStart] = useState(1);
-  const [end, setEnd] = useState(4);
-
+}) => {  
   const lastPage = useMemo(() => {
     return Math.ceil(total / perPage);
   }, [total, perPage]);
+
+  const getDefaultPoints = useCallback(() => {
+    if (currentPage < 1) {
+      setCurrentPage(1);
+    } else if (currentPage > lastPage) {
+      setCurrentPage(lastPage);
+    }
+
+    if (currentPage + 4 > lastPage && lastPage > 4) {
+      return [lastPage - 3, lastPage];
+    }
+
+    if (lastPage < 4) {
+      return [1, lastPage];
+    }
+
+    return [currentPage, currentPage + 3];
+  }, [currentPage, lastPage, setCurrentPage]);
+
+  const [defaultStart, defaultEnd] = getDefaultPoints();
+
+  const [start, setStart] = useState(defaultStart);
+  const [end, setEnd] = useState(defaultEnd);
 
   const pages = useMemo(() => {
     return getNumbers(1, lastPage)
