@@ -1,0 +1,272 @@
+@import '../../styles/vars/vars.scss';
+@import '../../styles/mixins/_mixins.scss';
+
+.container {
+  margin-top: 60px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.cart {
+  padding: 0 16px;
+
+  &__container {
+    width: 100%;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 0;
+    }
+
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    @include desktop {
+      display: grid;
+
+      align-items: flex-start;
+    }
+  }
+
+  &__title {
+    font-weight: 800;
+
+    @include mobile {
+      font-size: 32px;
+      line-height: 41px;
+    }
+
+    @include tablet {
+      font-size: 48px;
+      line-height: 56px;
+    }
+
+    @include desktop {
+      font-size: 48px;
+      line-height: 56px;
+    }
+
+    letter-spacing: -0.01em;
+
+    margin: 0 0 32px;
+
+    color: $white;
+  }
+
+  &__bill {
+    border: 1px solid #3B3E4A;
+  }
+}
+
+.product-cart{
+  color: $white;
+
+  display: flex;
+  flex-direction: row;
+
+  gap: 24px;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  @include mobile {
+    justify-content: space-between;
+
+    padding: 16px;
+
+    gap: 0;
+
+    flex-wrap: wrap;
+  }
+  
+  padding: 24px;
+
+  
+  background-color: $surface-1;
+
+  margin-bottom: 16px;
+
+  &__delete {
+    cursor: pointer;
+
+    background-image: url(../../images/gray-cross.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 16px;
+    height: 16px;
+  }
+
+  &__image-box {
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    @include mobile {
+      width: 128px;
+    }
+
+    @include tablet {
+      width: 180px;
+    }
+
+    @include desktop {
+      width: 340px;
+    }
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &__price {
+    width: 80px;
+
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 140%;
+
+    text-align: right;
+  }
+}
+
+.counter {
+  display: flex;
+  gap: 0px;
+
+  &__minus {
+    cursor: pointer;
+
+    background-color: transparent;
+
+    background-image: url(../../images/Minus/minus-active.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-color: transparent;
+
+    border: 1px solid $surface-2;
+
+    width: 32px;
+    height: 32px;
+
+    transition: opacity .3s, background-color .3s;
+
+    &:hover {
+      background-color: $surface-2;
+    }
+
+    &--disable {
+      cursor: default;
+
+      opacity: 50%;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    height: 32px;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+
+    text-align: center;
+    color: $white;
+  }
+
+  &__plus {
+    cursor: pointer;
+
+    background-color: transparent;
+
+    background-image: url(../../images/Plus/plus-active.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border: 1px solid #3B3E4A;
+
+    width: 32px;
+    height: 32px;
+
+    transition: opacity .3s, background-color .3s;
+
+    &:hover {
+      background-color: $surface-2;
+    }
+
+    &--disable {
+      cursor: default;
+
+      background-color: transparent;
+
+      opacity: 50%;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.bill {
+  width: 100%;
+  height: min-content;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  color: $white;
+
+  &__total-price {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+  }
+
+  &__items {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+
+    color: $secondary;
+
+    margin-bottom: 24px;
+  }
+
+  &__line {
+    width: 100%;
+    border-bottom: 1px solid $elements;
+
+    margin-bottom: 24px;
+  }
+}
