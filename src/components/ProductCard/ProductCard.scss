@@ -1,0 +1,168 @@
+.card {
+  max-width: 272px;
+  max-height: 506px;
+  padding: 32px;
+
+  background-color: #161827;
+
+  &__image-container {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 24px;
+  }
+
+  &__image {
+    width: 208px;
+    height: 196px
+  }
+
+  &__title {
+    margin:  0  0 10px;
+    padding: 0;
+
+    text-align: left;
+
+    font-family: Mont;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    text-decoration: none;
+
+    color: #F1F2F9;
+  }
+
+  &__price-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: 8px;
+
+    gap: 8px;
+  }
+
+  &__current-price {
+    padding: 0px;
+    margin: 0px;
+
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 140%;
+
+    color: #F1F2F9;
+  }
+
+  &__full-price {
+    padding: 0px;
+    margin: 0px;
+
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
+    text-decoration-line: line-through;
+
+    color: #75767F;
+  }
+
+  &__line {
+    width: 100%;
+
+    margin-bottom: 8px;
+
+    border: 1px solid #3B3E4A;
+  }
+
+  &__info-container {
+    margin-bottom: 12px;
+
+    padding: 8px 0;
+  }
+
+  &__info-raw {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__info-text {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+
+    color: #75767F;
+  }
+
+  &__info-value {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: right;
+
+    color: #F1F2F9;
+  }
+
+  &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 8px;
+  }
+
+  &__like-button {
+    width: 40px;
+    height: 40px;
+
+    background-color: #323542;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('public/images/like.svg');
+
+    transition: background-color 0.3s;
+
+    border: 0;
+    padding: 0;
+
+    &--is-selected {
+      border: 1px solid #3B3E4A;
+
+      background-image: url('public/images/active-like.png');
+    }
+
+    &:hover {
+      background-color: #4A4D58;
+    }
+  }
+
+  &__add-button {
+    height: 40px;
+
+    flex-grow: 1;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+
+    text-align: center;
+
+    color: #F1F2F9;
+
+    transition: background-color 0.3s;
+    background-color: #905BFF;
+
+    border: 0;
+    padding: 0;
+
+    &--is-selected {
+      background-color: #323542;
+    }
+
+    &:hover {
+      background-color: #A378FF;
+    }
+  }
+}
