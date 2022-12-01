@@ -21,25 +21,25 @@
 
     position: relative;
 
-    background: #323542;
+    background: $surface-2;
     width: 32px;
     height: 32px;
 
     transition: background-color .3s;
 
     &:hover {
-      background-color: #4A4D58;
+      background-color: $icons;
     }
 
     &--disable {
-      border: 1px solid #3B3E4A;
-      background-color: rgba($color: #000000, $alpha: 0);
+      border: 1px solid $elements;
+      background-color: rgba($color: #000, $alpha: 0);
 
       width: 30px;
       height: 30px;
 
       &:hover {
-        background-color: rgba($color: #000000, $alpha: 0);
+        background-color: rgba($color: #000, $alpha: 0);
       }
 
       &::before {
@@ -97,7 +97,7 @@
   &__page-link {
     cursor: pointer;
   
-    background: #161827;
+    background: $surface-1;
     width: 32px;
     height: 32px;
 
@@ -105,20 +105,20 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 32px;
-    color: #F1F2F9;
+    color: $white;
 
     text-align: center;
 
     &:hover {
-      background-color: #3B3E4A;
+      background-color: $elements;
       transition: background-color .3s;
     }
 
     &--active {
-      background-color: #905BFF;
+      background-color: $accent;
 
       &:hover {
-        background-color: #905Bff;
+        background-color: $accent;
       }
     }
   }

@@ -3,7 +3,7 @@
   max-height: 506px;
   padding: 32px;
 
-  background-color: #161827;
+  background-color: $surface-1;
 
   &__image-container {
     display: flex;
@@ -29,7 +29,7 @@
     line-height: 21px;
     text-decoration: none;
 
-    color: #F1F2F9;
+    color: $white;
   }
 
   &__price-container {
@@ -49,7 +49,7 @@
     font-size: 22px;
     line-height: 140%;
 
-    color: #F1F2F9;
+    color: $white;
   }
 
   &__full-price {
@@ -61,7 +61,7 @@
     line-height: 28px;
     text-decoration-line: line-through;
 
-    color: #75767F;
+    color: $secondary;
   }
 
   &__line {
@@ -69,7 +69,7 @@
 
     margin-bottom: 8px;
 
-    border: 1px solid #3B3E4A;
+    border: 1px solid $elements;
   }
 
   &__info-container {
@@ -93,7 +93,7 @@
     font-size: 12px;
     line-height: 15px;
 
-    color: #75767F;
+    color: $secondary;
   }
 
   &__info-value {
@@ -102,7 +102,7 @@
     line-height: 15px;
     text-align: right;
 
-    color: #F1F2F9;
+    color: $white;
   }
 
   &__buttons-container {
@@ -117,7 +117,7 @@
     width: 40px;
     height: 40px;
 
-    background-color: #323542;
+    background-color: $surface-2;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url('public/images/like.svg');
@@ -128,13 +128,13 @@
     padding: 0;
 
     &--is-selected {
-      border: 1px solid #3B3E4A;
+      border: 1px solid $elements;
 
       background-image: url('public/images/active-like.png');
     }
 
     &:hover {
-      background-color: #4A4D58;
+      background-color: $icons;
     }
   }
 
@@ -149,20 +149,20 @@
 
     text-align: center;
 
-    color: #F1F2F9;
+    color: $white;
 
     transition: background-color 0.3s;
-    background-color: #905BFF;
+    background-color: $accent;
 
     border: 0;
     padding: 0;
 
     &--is-selected {
-      background-color: #323542;
+      background-color: $surface-2;
     }
 
     &:hover {
-      background-color: #A378FF;
+      background-color: $hover-accent;
     }
   }
 }
