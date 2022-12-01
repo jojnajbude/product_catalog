@@ -1,0 +1,71 @@
+@import "../../styles/vars/vars.scss";
+
+.productsSlider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__wrap {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  &__btn {
+    height: 400px;
+    width: 32px;
+    background-color: $surface-2;
+    border: 1px solid $surface-2;
+    transition: border-color 0.3s;
+
+    &:hover {
+      border-color: $icons;
+      background-color: $icons;
+    }
+  }
+
+  &__container {
+    position: relative;
+    width: 1040px;
+    height: 400px;
+    overflow: hidden;
+    border: 1px solid $icons;
+  }
+
+  &__img {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    z-index: -1;
+    transform: translateX(-50%);
+    transition: all 0.5s ease;
+    opacity: 0;
+
+    &--act {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &__indicators {
+    display: flex;
+    gap: 14px;
+  }
+
+  &__indicator {
+    width: 14px;
+    height: 4px;
+    background-color: $elements;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    border: none;
+
+    &:hover {
+      box-shadow: 0 0 8px grey;
+    }
+
+    &--active {
+      background-color: $white;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import "../../styles/vars/vars.scss";
+
+.Carusel {
+  padding: 80px 0;
+
+  &__title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 41px;
+    color: $white;
+    margin-bottom: 24px;
+  }
+
+  &__btns {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__btn {
+    width: 32px;
+    height: 32px;
+    background-color: $surface-2;
+    border: 1px solid $elements;
+    transition: background-color 0.3s;
+
+    &:hover {
+      border-color: $icons;
+      background-color: $icons;
+    }
+
+    &__btn--off {
+      border-color: $elements;
+    }
+  }
+
+  &__img-off {
+    opacity: 0.3;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__list {
+    display: flex;
+    gap: 16px;
+    overflow: hidden;
+  }
+
+  &__wrap {
+    width: 1136px;
+    overflow: hidden;
+  }
+}

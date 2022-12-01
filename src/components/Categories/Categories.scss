@@ -1,0 +1,50 @@
+@import "../../styles/vars/vars.scss";
+
+.Categories {
+
+  &__title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 41px;
+    color: $white;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__item {
+    list-style: none;
+  }
+
+  &__subtitle {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    color: $white;
+    text-decoration: none;
+  }
+
+  &__img {
+    position: relative;
+    transition: transform 0.4s;
+  }
+
+  &__link:hover &__img {
+    transform: scale(1.1);
+  }
+
+  &__link-container {
+    position: relative;
+    overflow: hidden;
+    height: 368px;
+    width: 368px;
+    margin-bottom: 24px;
+  }
+
+  &__info {
+    color: $secondary;
+  }
+}
