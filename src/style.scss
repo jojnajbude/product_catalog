@@ -13,9 +13,12 @@ body {
 
 ul,
 li,
+h1,
 h2,
 h3,
 h4,
+h5,
+p,
 img,
 div {
   padding: 0;
@@ -24,3 +27,4 @@ div {
 
 @import './styles/grids-templates/grid-templates.scss';
 @import './components/Path/path.scss';
+@import './components/ItemCard/ItemCard.scss'

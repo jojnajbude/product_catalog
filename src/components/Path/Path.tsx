@@ -1,10 +1,18 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment, useEffect, useState } from 'react'
 import classNames from 'classnames';
 import Home from '../../images/Home.png';
 import Arrow from '../../images/path_stroke.svg'
+import { useLocation } from 'react-router';
 
 export const Path: FC = () => {
-  const paths = ["favorite", "apple-iphone-11-pro-max-64gb-gold"];
+  const [paths, setPaths] = useState<string[]>([]);
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname.slice(1).split('/');
+
+    setPaths(currentPath);
+  }, [location])
 
   return (
     <div className="path">
