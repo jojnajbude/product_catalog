@@ -1,0 +1,129 @@
+@import "../../styles/vars/vars.scss";
+
+.header {
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  background: $bc-color ;
+  box-shadow: 0 1px 0 $surface-2;
+  margin-bottom: 40px;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+  }
+
+  &__logo {
+    width: 80px;
+    height: 26px;
+    background-repeat: no-repeat;
+  }
+
+  &__nav {
+    margin-left: 64px;
+  }
+
+  &__nav-list {
+    display: flex;
+    gap: 64px;
+    list-style: none;
+  }
+
+  &__nav-item {
+    position: relative;
+    height: max-content;
+    line-height: 64px;
+  }
+
+  &__nav-link {
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 11px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $secondary;
+
+    transition-duration: 0.5s;
+    transition-property: color;
+
+    &:hover {
+      color: $white;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      height: 4px;
+      width: 100%;
+      background-color: $white;
+      left: 0;
+      bottom: 0;
+      opacity: 0;
+
+      transition: opacity 0.3s;
+    }
+
+    &:hover::after {
+      opacity: 100;
+    }
+  }
+
+  &__link {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -1px 0 0 $elements;
+    width: 64px;
+
+    &::after {
+      position: absolute;
+      content: "";
+      height: 4px;
+      width: 100%;
+      background-color: $white;
+      left: 0;
+      bottom: 0;
+      opacity: 0;
+
+      transition: opacity 0.3s;
+    }
+
+    &:hover::after {
+      opacity: 100;
+    }
+  }
+
+  &__link-wrap {
+    position: relative;
+  }
+
+  &__link-img {
+    transition: transform 0.3s;
+  }
+
+  &__link-img-count {
+    position: absolute;
+    top: -6px;
+    left: 10px;
+    height: 14px;
+    width: 14px;
+    background-color: red;
+    border-radius: 50%;
+    color: $white;
+    font-weight: 600;
+    font-size: 9px;
+    line-height: 14px;
+    text-align: center;
+  }
+
+  &__link:hover .header__link-img {
+    transform: scale(1.2);
+  }
+
+  &__right {
+    display: flex;
+  }
+}
