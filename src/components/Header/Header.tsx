@@ -4,6 +4,9 @@ import {
   NavLink,
 } from 'react-router-dom';
 import './Header.scss';
+import Logo from '../../images/Logo.png';
+import Cart from '../../images/cart.svg';
+import Like from '../../images/like.svg';
 
 export const Header:React.FC = () => {
   const favoritesLength = 4;
@@ -13,7 +16,7 @@ export const Header:React.FC = () => {
     <header className="header">
       <section className="header__left">
         <Link to="/">
-          <img className="header__logo" src="./images/Logo.png" alt="logo" />
+          <img className="header__logo" src={ Logo } alt="logo" />
         </Link>
 
         <nav className="header__nav">
@@ -64,7 +67,7 @@ export const Header:React.FC = () => {
         >
           <div className="header__link-wrap">
             <img
-              src="./images/favorites.svg"
+              src={ Like }
               className="header__link-img"
               alt="btn-like"
             />
@@ -79,7 +82,7 @@ export const Header:React.FC = () => {
         <NavLink to="/cart" className="header__link">
           <div className="header__link-wrap">
             <img
-              src="./images/cart.svg"
+              src={ Cart }
               className="header__link-img"
               alt="link-img"
             />

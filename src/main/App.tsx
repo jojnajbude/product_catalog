@@ -1,12 +1,12 @@
 import React from 'react';
 import { Header } from '../components/Header/Header';
+import { Path } from '../components/Path';
 
-function App() {
+export const App = () => {
   return (
     <div className="app">
       <Header />
+      <Path />
     </div>
   );
 }
-
-export default App;

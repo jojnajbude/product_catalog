@@ -1,0 +1,39 @@
+@import '../../styles/mixins/mixins';
+@import '../../styles/vars/vars.scss';
+
+.path {
+  @include mobile {
+    margin: 0 16px 24px;
+  }
+
+  @include tablet {
+    margin: 0 32px 40px;
+  }
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &__name {
+    font-family: 'Mont';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    margin-left: 8px;
+
+
+    &--color-white {
+      color: $white;
+    }
+
+    &--color-grey {
+      color: $secondary;
+    }
+  }
+
+  &__img {
+    &-home, &-arrow {
+      margin-left: 8px;
+    }
+  }
+}
