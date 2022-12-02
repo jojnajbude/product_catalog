@@ -5,30 +5,30 @@ import {
   memo,
 } from 'react';
 import cn from 'classnames';
+import { Phone } from '../../types/Phone';
+
+import './ProductCard.scss';
 
 type Props = {
-  phoneId: string,
-  name: string,
-  fullPrice: number,
-  price: number,
-  screen: string,
-  capacity: string,
-  ram: string,
-  image: string,
+  phone: Phone;
 };
 
-export const ProductCard: FC<Props> = memo(({
-  phoneId,
-  name,
-  fullPrice,
-  price,
-  screen,
-  capacity,
-  ram,
-  image,
-}) => {
+export const ProductCard: FC<Props> = memo(({ phone }) => {
+  const {
+    phoneId,
+    name,
+    fullPrice,
+    price,
+    screen,
+    capacity,
+    ram,
+    image,
+  } = phone;
+
   const [phonesInCart, setPhonesInCart] = useState<string[]>([]);
   const [favouritePhones, setFavouritePhones] = useState<string[]>([]);
+
+  const imagePath = require(`../../images/${image.replace('.jpg', '.png')}`);
 
   const handlePhonesInCart = () => {
     if (phonesInCart.includes(phoneId)) {
@@ -81,7 +81,7 @@ export const ProductCard: FC<Props> = memo(({
       <div className="card__image-container">
         <img
           className="card__image"
-          src={image}
+          src={imagePath}
           alt="phone"
         />
       </div>

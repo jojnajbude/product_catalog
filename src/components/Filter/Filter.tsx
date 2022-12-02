@@ -5,9 +5,9 @@ import './Filter.scss'
 
 type Props = {
   title: string,
-  optionsList: string[],
-  selectedFilter: string,
-  setFilter: React.Dispatch<React.SetStateAction<string>>,
+  optionsList: any[],
+  selectedFilter: any,
+  setFilter: React.Dispatch<React.SetStateAction<any>>,
 };
 
 export const Filter: React.FC<Props> = ({
@@ -50,6 +50,7 @@ export const Filter: React.FC<Props> = ({
                 setFilter(option);
                 setIsOpen(curr => !curr);
               }}
+              key={option}
             >
               {option}
             </li>

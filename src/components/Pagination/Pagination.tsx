@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import classNames from 'classnames';
 
 import './Pagination.scss';
@@ -46,20 +46,32 @@ export const Pagination: React.FC<Props> = ({
     }
 
     return [currentPage, currentPage + 3];
-  }, [currentPage, lastPage, setCurrentPage]);
+  }, [currentPage, lastPage]);
 
-  const [defaultStart, defaultEnd] = getDefaultPoints();
+  const [start, setStart] = useState(1);
+  const [end, setEnd] = useState(4);
 
-  const [start, setStart] = useState(defaultStart);
-  const [end, setEnd] = useState(defaultEnd);
+  useEffect(() => {
+    console.log('pagination rendered');
+
+    const result = getDefaultPoints();
+    setStart(result[0]);
+    setEnd(result[1]);
+  }, []);
 
   const pages = useMemo(() => {
     return getNumbers(1, lastPage)
   }, [lastPage]);
 
   const visiblePages = useMemo(() => {
+    console.log('pages' , pages);
+    console.log('start - end: ', start, end);
+    console.log('pages-slice' , pages.slice(start - 1, end));
+
     return pages.slice(start - 1, end);
   }, [pages, start, end]);
+
+  console.log('VisiblePages: ' ,visiblePages);
 
   const goToPrevious = useCallback(() => {
     if (currentPage === 1) {

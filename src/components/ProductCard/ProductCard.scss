@@ -11,12 +11,13 @@
     display: flex;
     justify-content: center;
 
+    height: 200px;
+
     margin-bottom: 24px;
   }
 
   &__image {
-    width: 208px;
-    height: 196px
+    height: 100%;
   }
 
   &__title {
@@ -122,7 +123,7 @@
     background-color: $surface-2;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('public/images/like.svg');
+    background-image: url('../../images/like.svg');
 
     transition: background-color 0.3s;
 
@@ -132,7 +133,7 @@
     &--is-selected {
       border: 1px solid $elements;
 
-      background-image: url('public/images/active-like.png');
+      background-image: url('../../images/active-like.png');
     }
 
     &:hover {
