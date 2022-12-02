@@ -82,14 +82,7 @@ export const Carusel: React.FC<Props> = ({ phones, title }) => {
         >
           {phonesArr.map(phone => (
             <ProductCard 
-              phoneId={phone.phoneId}
-              name={phone.name}
-              fullPrice={phone.fullPrice}
-              price={phone.price}
-              screen={phone.screen}
-              capacity={phone.capacity}
-              ram={phone.ram}
-              image={phone.image}
+              phone={phone}
             />
           ))}
         </ul>
