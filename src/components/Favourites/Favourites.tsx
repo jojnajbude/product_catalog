@@ -13,7 +13,6 @@ export const Favourites: FC = memo(() => {
     ? phonesFromLocalStorage.split(',')
     : [];
   const favouritesPhonesCount = favouritesPhonesId.length;
-
   const [phones, setPhones] = useState<Phone[]>([]);
 
   const getAllPhonesFromApi = async () => {

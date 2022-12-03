@@ -3,6 +3,7 @@ import {
   useEffect,
   useState,
   memo,
+  useMemo,
 } from 'react';
 import cn from 'classnames';
 import { Phone } from '../../types/Phone';
@@ -16,6 +17,7 @@ type Props = {
 
 export const ProductCard: FC<Props> = memo(({ phone }) => {
   const {
+    itemId,
     phoneId,
     name,
     fullPrice,
@@ -25,56 +27,55 @@ export const ProductCard: FC<Props> = memo(({ phone }) => {
     ram,
     image,
   } = phone;
-  const [phonesInCart, setPhonesInCart] = useState<string[]>([]);
-  const [favouritePhones, setFavouritePhones] = useState<string[]>([]);
-
   const imagePath = require(`../../images/${image.replace('.jpg', '.png')}`);
 
-  const handlePhonesInCart = () => {
-    if (phonesInCart.includes(phoneId)) {
-      setPhonesInCart(prevPhonesInCart => {
-        const filteredPhonesInCart = prevPhonesInCart.filter(itemId => (
-          itemId !== phoneId
-        ));
+  const phoneCartsStorage = () => {
+    const phoneCartFromStorage = localStorage.getItem('phoneCarts');
 
-        return filteredPhonesInCart;
-      });
+    return phoneCartFromStorage
+      ? phoneCartFromStorage.split(',')
+      : [];
+  };
+  const favouritePhonesStorage = () => {
+    const favouritePhonesFromStorage =  localStorage.getItem('favouritePhones');
+
+    return favouritePhonesFromStorage
+      ? favouritePhonesFromStorage.split(',')
+      : [];
+  };
+
+  const [phoneCarts, setPhoneCarts] = useState(phoneCartsStorage());
+  const [favouritePhones, setFavouritePhones] = useState(favouritePhonesStorage());
+
+  const isPhoneCartsIncludeId = phoneCarts.includes(itemId);
+  const isFavouritePhonesIncludeId = favouritePhones.includes(itemId);
+
+  const handlePhoneCarts = () => {
+    if (isPhoneCartsIncludeId) {
+      const filteredPhoneCarts = phoneCartsStorage().filter(id => id !== itemId);
+
+      localStorage.setItem('phoneCarts', filteredPhoneCarts.join(','));
+      setPhoneCarts(phoneCartsStorage());
     } else {
-      setPhonesInCart((prevPhonesInCart) => {
-        return [...prevPhonesInCart, phoneId];
-      });
+      const completePhoneCarts = [...phoneCartsStorage(), itemId];
+
+      localStorage.setItem('phoneCarts', completePhoneCarts.join(','));
+      setPhoneCarts(phoneCartsStorage());
     }
   }
   const handleFavouritePhones = () => {
-    if (favouritePhones.includes(phoneId)) {
-      setFavouritePhones(prevFavouritePhones => {
-        const filteredFavouritePhones = prevFavouritePhones.filter(itemId => (
-          itemId !== phoneId
-        ));
+    if (isFavouritePhonesIncludeId) {
+      const filteredFavouritePhones = favouritePhonesStorage().filter(id => id !== itemId);
 
-        return filteredFavouritePhones;
-      });
+      localStorage.setItem('favouritePhones', filteredFavouritePhones.join(','));
+      setFavouritePhones(favouritePhonesStorage());
     } else {
-      setFavouritePhones((prevFavouritePhones) => {
-        return [...prevFavouritePhones, phoneId];
-      });
+      const completeFavouritePhones = [...favouritePhonesStorage(), itemId];
+
+      localStorage.setItem('favouritePhones', completeFavouritePhones.join(','));
+      setFavouritePhones(favouritePhonesStorage());
     }
   };
-
-  const isPhonesInCartIncludeId = phonesInCart.includes(phoneId);
-  const isFavouritePhonesIncludeId = favouritePhones.includes(phoneId);
-
-  useEffect(() => {
-    const phonesInCartToStr = phonesInCart.join(',');
-
-    localStorage.setItem('phonesInCart', phonesInCartToStr);
-  }, [phonesInCart]);
-
-  useEffect(() => {
-    const favouritePhonesToStr = favouritePhones.join(',');
-
-    localStorage.setItem('favouritePhones', favouritePhonesToStr);
-  }, [favouritePhones]);
 
   return (
     <div className="card">
@@ -137,11 +138,11 @@ export const ProductCard: FC<Props> = memo(({ phone }) => {
       <div className="card__buttons-container">
         <button
           className={cn('card__add-button', {
-            'card__add-button--is-selected': isPhonesInCartIncludeId
+            'card__add-button--is-selected': isPhoneCartsIncludeId
           })}
-          onClick={handlePhonesInCart}
+          onClick={handlePhoneCarts}
         >
-          {!isPhonesInCartIncludeId
+          {!isPhoneCartsIncludeId
             ? 'Add to card'
             : 'Added'}
         </button>
