@@ -1,8 +1,8 @@
 export enum SortBy {
   Newest = 'Newest',
   Oldest = 'Oldest',
-  Cheaper = 'Cheaper',
-  More_Expensive = 'Move expensive',
+  Cheaper = 'Price Up',
+  More_Expensive = 'Price Down',
 }
 
 export const sortByOptions = [

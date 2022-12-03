@@ -2,12 +2,14 @@ import { useMemo, FC, useEffect, useState, Fragment } from 'react';
 import classNames from 'classnames';
 import { getPhoneDescription } from '../../api/phoneDescription';
 import { PhoneDescr } from '../../utils/types/PhoneDescription';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { Path } from '../Path';
 
 export const ItemCard: FC = () => {
+  const { openedPhoneId = '' } = useParams();
   const [phoneData, setPhoneData] = useState<PhoneDescr | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
-  const [phoneId, setPhoneId] = useState('apple-iphone-11-64gb-green');
+  const [phoneId, setPhoneId] = useState(openedPhoneId);
   const [phonesInCart, setPhonesInCart] = useState<string[]>([]);
   const [favouritePhones, setFavouritePhones] = useState<string[]>([]);
 
@@ -112,6 +114,7 @@ export const ItemCard: FC = () => {
 
   return (
     <>
+      <Path />
       {phoneData &&
         <div className='phone-card grid grid-mobile grid-tablet grid-desktop'>
           <h1 className='phone-card__title grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25'>
@@ -226,7 +229,7 @@ export const ItemCard: FC = () => {
               >
                 {!isPhonesInCartIncludeId
                   ? 'Add to cart'
-                  : 'Remove from cart'}
+                  : 'Added'}
               </button>
 
               <button

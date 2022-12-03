@@ -8,6 +8,7 @@ import cn from 'classnames';
 import { Phone } from '../../types/Phone';
 
 import './ProductCard.scss';
+import { Link } from 'react-router-dom';
 
 type Props = {
   phone: Phone;
@@ -24,7 +25,6 @@ export const ProductCard: FC<Props> = memo(({ phone }) => {
     ram,
     image,
   } = phone;
-
   const [phonesInCart, setPhonesInCart] = useState<string[]>([]);
   const [favouritePhones, setFavouritePhones] = useState<string[]>([]);
 
@@ -79,16 +79,18 @@ export const ProductCard: FC<Props> = memo(({ phone }) => {
   return (
     <div className="card">
       <div className="card__image-container">
-        <img
-          className="card__image"
-          src={imagePath}
-          alt="phone"
-        />
+        <Link to={`${phoneId}`}>
+          <img
+            className="card__image"
+            src={imagePath}
+            alt="phone"
+          />
+        </Link>
       </div>
 
-      <a href={'/'} className="card__title">
-        {name}
-      </a>
+      <Link to={`${phoneId}`} className="card__title">
+        {phoneId}
+      </Link>
 
       <div className="card__price-container">
         <h2 className="card__current-price">

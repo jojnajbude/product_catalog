@@ -1,0 +1,16 @@
+@import '../../styles/mixins/mixins';
+@import '../../styles/vars/vars.scss';
+
+.page-not-found {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__title {
+    color: $white;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}

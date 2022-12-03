@@ -6,108 +6,151 @@ import { Path } from '../../components/Path';
 import { ProductCard } from '../../components/ProductCard';
 import { Phone } from '../../types/Phone';
 import { SortBy, sortByOptions } from '../../types/SortyBy';
-
 import './Products.scss'
 
-type Props = {
-  title: string;
-};
+const perPageOptions = [16, 12, 8, 4];
 
-
-export const Products: React.FC<Props> = ({ title }) => {
+export const Products: React.FC = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
-
+  const [visiblePhones, setVisiblePhones] = useState<Phone[]>([])
   const [sortBy, setSortBy] = useState<SortBy>(SortBy.Newest);
-
-  const perPageOptions = [16, 12, 8];
-  const [perPage, setPerPage] = useState(perPageOptions[0]);
+  const [perPage, setPerPage] = useState(16);
   const [currentPage, setCurrentPage] = useState(1);
 
   const loadPhones = async () => {
     try {
       const phonesData = await getAllPhones();
-      console.log('before');
+
       setPhones(phonesData);
-      console.log('after');
+      getVisiblePhones();
     } catch {
       throw new Error('something wrong')
     }
   };
 
+  const getVisiblePhones = () => {
+    const start = perPage * (currentPage - 1);
+    const end = perPage * (currentPage);
+    const realEnd = end > phones.length ? phones.length : end;
+
+    const visiblePhones = [...phones].sort((phoneA, phoneB) => {
+      switch (sortBy) {
+        case SortBy.Newest:
+          return phoneB.year - phoneA.year;
+
+        case SortBy.Oldest:
+          return phoneA.year - phoneB.year;
+
+        case SortBy.Cheaper:
+          return phoneB.price - phoneA.price;
+
+        case SortBy.More_Expensive:
+          return phoneA.price - phoneB.price;
+
+        default:
+          return 0;
+      }
+    }).slice(start, realEnd);
+
+    setVisiblePhones(visiblePhones);
+  }
+
+  const handleQuantityChange = (quantity: string) => {
+    setPerPage(+quantity);
+    setCurrentPage(1);
+  }
+
+  const handleTypeSortChange = (type: string) => {
+    setSortBy(type as SortBy);
+    setCurrentPage(1);
+  }
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   useEffect(() => {
-    loadPhones();
-    console.log('products rendered');
-  }, []);
+    if (phones.length === 0) {
+      loadPhones();
+    }
 
-  const phoneLength = phones.length;
-
-  console.log('length', phoneLength);
+    getVisiblePhones();
+  }, [phones, sortBy, perPage, currentPage]);
 
   return (
-   <div className="container">
-     <section className='products'>
+    <>
       <Path />
-        <h1 className='products__title'>
-          {title}
-        </h1>
-        <div className='products__length'>
-          {`${phones.length} models`}
-        </div>
 
-        <div className='products__filters grid grid-desktop'>
+      <div className="phones-page">
+        <section className='phones-page__products products grid grid-mobile grid-tablet grid-desktop'>
+          <h1 className='products__title grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25'>
+            Mobile phones
+          </h1>
+
+          <div className='products__length grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25'>
+            {`${phones.length} models`}
+          </div>
+
+          {phones.length && <div className='products__filters grid-mobile-1-5 grid-tablet-1-8 grid-desktop-1-8'>
+            <div className="products__filter products__filter--left">
+              <Filter
+                title='Sort by'
+                optionsList={sortByOptions}
+                selectedFilter={sortBy}
+                handleFilterChange={handleTypeSortChange}
+              />
+            </div>
+
+            <div className="products__filter products__filter--right">
+              <Filter
+                title='Items per page'
+                optionsList={perPageOptions}
+                selectedFilter={perPage}
+                handleFilterChange={handleQuantityChange}
+              />
+            </div>
+          </div>}
+
           <div className="
-            products__filter
-            grid-desktop-1-5"
+            products__cards-wrapper
+            grid-mobile-1-5
+            grid-tablet-1-13
+            grid-desktop-1-25"
           >
-            <Filter 
-              title='Sort by'
-              optionsList={sortByOptions}
-              selectedFilter={sortBy}
-              setFilter={setSortBy}
-            />
+            <div className="products__container">
+              {visiblePhones.map((phone) => {
+
+                return (
+                  <div className={
+                    `products__product-container`
+                  }
+                    key={phone.id}
+                  >
+                  <ProductCard
+                    phone={phone}
+                  />
+                </div>
+                )
+              })}
+            </div>
+
+            {phones.length && <div className='
+              products__pagination-container
+              grid-mobile-1-5
+              grid-tablet-1-13
+              grid-desktop-1-25'
+            >
+              <Pagination
+                total={phones.length}
+                perPage={perPage}
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+              />
+            </div>}
           </div>
-
-          <div className="
-            products__filter
-            grid-desktop-5-8"
-          >
-            <Filter 
-              title='Items per page'
-              optionsList={perPageOptions}
-              selectedFilter={perPage}
-              setFilter={setPerPage}
-            />
-          </div>
-        </div>
-
-        <div className="products__container grid grid-desktop">
-          {phones.map((phone, i) => {
-            const end = 24 - (24 - ((Math.ceil(i % 4) + 1) * 6)) + 1;
-            const start = end - 6;
-
-            return (
-              <div className={
-                `products__product-container grid-desktop-${start}-${end}`
-              }
-              key={phone.id}
-              >
-                <ProductCard 
-                  phone={phone}
-                />
-              </div>
-            )
-          })}
-
-          <div className='products__pagination-container grid-desktop-10-16'>
-            <Pagination
-              total={phones.length} // here should be phones.length, but if write this will be error
-              perPage={perPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-          </div>
-        </div>
-    </section>
-   </div>
+        </section>
+      </div>
+    </>
   );
 };

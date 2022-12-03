@@ -39,7 +39,7 @@
     @include mobile {
       margin-bottom: 32px;
     }
-    
+
     @include tablet {
       display: flex;
       flex-direction: row;
@@ -71,7 +71,7 @@
         margin-right: 106px;
       }
     }
-    
+
     &-link:last-child {
       margin-bottom: 0;
 
@@ -90,6 +90,15 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+
+    &:hover .footer__back-link{
+      background-color: $icons;
+    }
+
+    &:hover .footer__back-article{
+      color: $white;
+    }
 
     &-article {
       font-family: 'Mont';
@@ -103,10 +112,6 @@
       cursor: pointer;
     }
 
-    &-article:hover {
-      color: $white;
-    }
-
     &-link {
       display: flex;
       justify-content: center;
@@ -117,10 +122,7 @@
       background-color: $surface-2;
       border-color: transparent;
       text-decoration: none;
-    }
-
-    &-link:hover {
-      background-color: $icons;
+      cursor: pointer;
     }
   }
 }

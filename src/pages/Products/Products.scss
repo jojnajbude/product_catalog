@@ -1,37 +1,99 @@
 @import '../../styles/vars/vars.scss';
 @import '../../styles/mixins/mixins';
 
-.container {
-  display: flex;
-  justify-content: center;
+#root {
+  display: block;
+}
+
+.phones-page {
+  margin: 0 16px 24px;
+
+  @include tablet {
+    margin: 0 24px 24px;
+  }
+
+  @include desktop {
+    margin: 0 32px 24px;
+  }
 }
 
 .products {
+
   &__title {
     font-weight: 800;
     font-size: 48px;
     line-height: 56px;
-
     letter-spacing: -0.01em;
-
     color: $white;
-
     margin-bottom: 8px;
+    grid-row: 1 / 2;
   }
 
   &__filters {
+    display: flex;
+    gap: 8px;
     margin-bottom: 24px;
+    grid-row: 3 / 4;
+  }
+
+  &__filter {
+    width: 50%;
+
+    &--left {
+      @include tablet {
+        width: 57%;
+      }
+    }
+
+    &--right {
+      @include tablet {
+        width: 43%;
+      }
+    }
   }
 
   &__length {
+    margin-bottom: 32px;
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
-
     color: $secondary;
+    grid-row: 2 / 3;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__cards-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 
   &__container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 288px;
     gap: 40px 16px;
+    grid-row: 4 / 5;
+    margin-bottom: 24px;
+    justify-content: start;
+
+    @include tablet {
+      width: 575px;
+    }
+
+    @media (min-width: 978px) {
+      width: 896px;
+    }
+
+    @include desktop {
+      width: 1136px;
+    }
+  }
+
+  &__pagination-container {
+    margin-bottom: 64px;
   }
 }

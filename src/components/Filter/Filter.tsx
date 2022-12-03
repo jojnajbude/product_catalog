@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
+import { SortBy } from '../../types/SortyBy';
 
 import './Filter.scss'
 
@@ -7,14 +8,14 @@ type Props = {
   title: string,
   optionsList: any[],
   selectedFilter: any,
-  setFilter: React.Dispatch<React.SetStateAction<any>>,
+  handleFilterChange: (option: string) => void,
 };
 
 export const Filter: React.FC<Props> = ({
   title,
   optionsList,
   selectedFilter,
-  setFilter
+  handleFilterChange
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -47,7 +48,7 @@ export const Filter: React.FC<Props> = ({
             <li
               className='filter__options-item'
               onClick={() => {
-                setFilter(option);
+                handleFilterChange(option);
                 setIsOpen(curr => !curr);
               }}
               key={option}

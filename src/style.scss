@@ -24,7 +24,8 @@ div {
   padding: 0;
   margin: 0;
 }
-
+@import './components/PageNotFound/PageNotFount.scss';
 @import './styles/grids-templates/grid-templates.scss';
 @import './components/Path/path.scss';
 @import './components/ItemCard/ItemCard.scss';
+@import './pages/Products/Products.scss';
