@@ -6,13 +6,14 @@ import { Phone } from '../../types/Phone';
 import { ProductCard } from '../ProductCard';
 
 export const Favourites: FC = memo(() => {
-  localStorage.setItem('favouritePhones', 'apple-iphone-11-64gb-black,apple-iphone-7-32gb-black,apple-iphone-11-128gb-black,apple-iphone-11-128gb-white');
+  const phoneCartsStorage = () => {
+    const phoneCartFromStorage = localStorage.getItem('favouritePhones');
 
-  const phonesFromLocalStorage = localStorage.getItem('favouritePhones') || '';
-  const favouritesPhonesId = phonesFromLocalStorage
-    ? phonesFromLocalStorage.split(',')
-    : [];
-  const favouritesPhonesCount = favouritesPhonesId.length;
+    return phoneCartFromStorage
+      ? phoneCartFromStorage.split(',')
+      : [];
+  };
+  const favouritesPhonesCount = phoneCartsStorage().length;
 
   const [phones, setPhones] = useState<Phone[]>([]);
 
@@ -30,7 +31,7 @@ export const Favourites: FC = memo(() => {
     (async () => setPhones(await getAllPhonesFromApi()))()
   }, []);
 
-  const filteredPhones = phones.filter(phone => favouritesPhonesId.includes(phone.phoneId));
+  const filteredPhones = phones.filter(phone => phoneCartsStorage().includes(phone.phoneId));
 
   return (
     <div className="favourites">

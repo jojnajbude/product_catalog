@@ -9,6 +9,7 @@ import { HomePage } from './components/HomePage';
 import { Products } from './pages/Products/Products';
 import { ItemCard } from './components/ItemCard';
 import { Cart } from './pages/Cart';
+import { Favourites } from './components/Favourites';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,6 +27,12 @@ root.render(
           <Route path="phones">
             <Route index element={
               <Products />
+            } />
+            <Route path=":openedPhoneId" element={<ItemCard />} />
+          </Route>
+          <Route path="favorites">
+            <Route index element={
+              <Favourites />
             } />
             <Route path=":openedPhoneId" element={<ItemCard />} />
           </Route>
