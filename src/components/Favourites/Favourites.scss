@@ -1,0 +1,45 @@
+@import '../../styles/mixins/mixins';
+
+.favourites {
+  display: flex;
+  justify-content: center;
+
+  &__header {
+    grid-template-rows: repeat(3, auto);
+
+    margin-bottom: 40px;
+  }
+
+  &__title {
+    grid-row: 1/2;
+
+    margin: 0 0 8px;
+    padding: 0;
+
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+
+    color: #F1F2F9;
+  }
+
+  &__product-count {
+    grid-row: 2/3;
+
+    margin: 0 0 32px;
+    padding: 0;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+
+    color: #75767F;
+  }
+
+  &__list {
+    margin-bottom: 56px;
+
+    list-style: none;
+    row-gap: 40px;
+  }
+}
