@@ -129,6 +129,7 @@ export const Products: React.FC = () => {
                   >
                   <ProductCard
                     phone={phone}
+                    updateUserData={() => {}}
                   />
                 </div>
                 )

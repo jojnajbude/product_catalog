@@ -30,7 +30,7 @@ root.render(
             } />
             <Route path=":openedPhoneId" element={<ItemCard />} />
           </Route>
-          <Route path="favorites">
+          <Route path="favourites">
             <Route index element={
               <Favourites />
             } />

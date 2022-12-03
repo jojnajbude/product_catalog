@@ -66,7 +66,7 @@ export const ItemCard: FC = () => {
   useEffect(() => {
     const phonesInCartToStr = phoneCarts.join(',');
 
-    localStorage.setItem('phonesInCart', phonesInCartToStr);
+    localStorage.setItem('phoneCarts', phonesInCartToStr);
   }, [phoneCarts]);
 
   useEffect(() => {
@@ -140,7 +140,7 @@ export const ItemCard: FC = () => {
             onMouseDown={event => handleMouseDown(event, phoneData.images.length)}
           >
             <img
-              src={require(`../../images/${phoneData.images[currentImage].replace('.jpg', '.png')}`)}
+              src={require(`../../images/${phoneData.images[currentImage]}`)}
               alt={phoneData.name}
               className="phone-card__main-image"
             />
@@ -161,7 +161,7 @@ export const ItemCard: FC = () => {
                   onClick={() => handleImageChange(i)}
                 >
                   <img
-                    src={require(`../../images/${imageLink.replace('.jpg', '.png')}`)}
+                    src={require(`../../images/${imageLink}`)}
                     alt={phoneData.name}
                     className="phone-card__preview-image"
                   />

@@ -81,8 +81,9 @@ export const Carusel: React.FC<Props> = ({ phones, title }) => {
           }}
         >
           {phonesArr.map(phone => (
-            <ProductCard 
+            <ProductCard
               phone={phone}
+              updateUserData={() => {}}
             />
           ))}
         </ul>

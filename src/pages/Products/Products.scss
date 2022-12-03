@@ -69,6 +69,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    grid-row: 4 / 5;
   }
 
   &__container {
@@ -76,7 +77,6 @@
     flex-wrap: wrap;
     width: 288px;
     gap: 40px 16px;
-    grid-row: 4 / 5;
     margin-bottom: 24px;
     justify-content: start;
 

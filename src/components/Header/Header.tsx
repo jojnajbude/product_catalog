@@ -62,7 +62,7 @@ export const Header:React.FC = () => {
 
       <section className="header__right">
         <NavLink
-          to="/favorites"
+          to="/favourites"
           className="header__link"
         >
           <div className="header__link-wrap">

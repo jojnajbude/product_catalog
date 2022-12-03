@@ -1,17 +1,18 @@
 @import '../../styles/mixins/mixins';
 
 .favourites {
-  display: flex;
-  justify-content: center;
+  margin: 0 16px 24px;
 
-  &__header {
-    grid-template-rows: repeat(3, auto);
+  @include tablet {
+    margin: 0 24px 24px;
+  }
 
-    margin-bottom: 40px;
+  @include desktop {
+    margin: 0 32px 24px;
   }
 
   &__title {
-    grid-row: 1/2;
+    grid-row: 1 / 2;
 
     margin: 0 0 8px;
     padding: 0;
@@ -36,10 +37,30 @@
     color: #75767F;
   }
 
-  &__list {
-    margin-bottom: 56px;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 
-    list-style: none;
-    row-gap: 40px;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 16px;
+    max-width: 288px;
+    margin-bottom: 56px;
+    justify-content: start;
+
+    @include tablet {
+      max-width: 575px;
+    }
+
+    @media (min-width: 978px) {
+      max-width: 896px;
+    }
+
+    @include desktop {
+      max-width: 1136px;
+    }
   }
 }
