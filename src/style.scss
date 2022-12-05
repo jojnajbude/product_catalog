@@ -11,6 +11,12 @@ body {
   background-color: $bc-color;
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 ul,
 li,
 h1,

@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
     const handleScrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+      window.scrollBy({ top: -100000, behavior: 'smooth' });
+    };
+
     return (
       <footer className="footer">
         <div className="footer__wrapper">

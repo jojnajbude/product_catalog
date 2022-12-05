@@ -23,25 +23,28 @@ root.render(
             element={<HomePage />}
           />
           <Route path="/home" element={<Navigate to="/" replace />} />
+
           <Route path="/cart" element={<Cart />} />
+
           <Route path="phones">
             <Route index element={
               <Products />
             } />
             <Route path=":openedPhoneId" element={<ItemCard />} />
           </Route>
+
           <Route path="favourites">
             <Route index element={
               <Favourites />
             } />
             <Route path=":openedPhoneId" element={<ItemCard />} />
           </Route>
-        </Route>
 
-        <Route
+          <Route
             path="*"
             element={<PageNotFound />}
           />
+        </Route>
     </Routes>
   </Router>
 );

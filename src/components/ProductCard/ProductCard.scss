@@ -2,6 +2,8 @@
 @import '../../styles/mixins/mixins';
 
 .card {
+  flex-grow: 0;
+  flex-shrink: 0;
   @include mobile {
     width: 288px;
     max-height: 440px;

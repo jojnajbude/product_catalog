@@ -1,6 +1,7 @@
 @import '../../styles/mixins/mixins';
 
 .favourites {
+  flex: 1;
   margin: 0 16px 24px;
 
   @include tablet {

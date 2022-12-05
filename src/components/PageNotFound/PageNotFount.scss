@@ -2,11 +2,7 @@
 @import '../../styles/vars/vars.scss';
 
 .page-not-found {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex: 1;
 
   &__title {
     color: $white;

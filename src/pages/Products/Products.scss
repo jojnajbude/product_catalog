@@ -1,11 +1,8 @@
 @import '../../styles/vars/vars.scss';
 @import '../../styles/mixins/mixins';
 
-#root {
-  display: block;
-}
-
 .phones-page {
+  flex: 1;
   margin: 0 16px 24px;
 
   @include tablet {

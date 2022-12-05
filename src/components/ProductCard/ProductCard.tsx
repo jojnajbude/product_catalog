@@ -1,9 +1,8 @@
 import {
   FC,
   useEffect,
-  useState,
-  memo,
   useMemo,
+  useState,
 } from 'react';
 import cn from 'classnames';
 import { Phone } from '../../types/Phone';
@@ -12,11 +11,12 @@ import './ProductCard.scss';
 import { Link } from 'react-router-dom';
 
 type Props = {
+  path: string;
   phone: Phone;
   updateUserData: () => void,
 };
 
-export const ProductCard: FC<Props> = ({ phone, updateUserData }) => {
+export const ProductCard: FC<Props> = ({ phone, updateUserData, path }) => {
   const {
     phoneId,
     name,
@@ -27,6 +27,11 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData }) => {
     ram,
     image,
   } = phone;
+  const linkPath = useMemo(() => {
+    return path === 'home'
+      ? `/phones/${phoneId}`
+      : `${phoneId}`
+  }, [path])
   const imagePath = require(`../../images/${image}`);
   const [phoneCarts, setPhoneCarts] = useState<string[]>([]);
   const [favouritePhones, setFavouritePhones] = useState<string[]>([]);
@@ -53,7 +58,6 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData }) => {
 
   const isPhoneCartsIncludeId = phoneCarts.includes(phoneId);
   const isFavouritePhonesIncludeId = favouritePhones.includes(phoneId);
-  console.log(favouritePhones[0])
 
   const handlePhoneCarts = () => {
     if (isPhoneCartsIncludeId) {
@@ -92,7 +96,7 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData }) => {
   return (
     <div className="card">
       <div className="card__image-container">
-        <Link to={`${phoneId}`}>
+        <Link to={linkPath}>
           <img
             className="card__image"
             src={imagePath}
@@ -101,7 +105,8 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData }) => {
         </Link>
       </div>
 
-      <Link to={`${phoneId}`} className="card__title">
+
+      <Link to={linkPath} className="card__title">
         {name}
       </Link>
 

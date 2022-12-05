@@ -4,12 +4,15 @@ import { getPhoneDescription } from '../../api/phoneDescription';
 import { PhoneDescr } from '../../utils/types/PhoneDescription';
 import { useNavigate, useParams } from 'react-router';
 import { Path } from '../Path';
+import { Loader } from '../../Loader';
+import { Carusel } from '../Carusel';
 
 export const ItemCard: FC = () => {
   const { openedPhoneId = '' } = useParams();
   const [phoneData, setPhoneData] = useState<PhoneDescr | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
   const [phoneId, setPhoneId] = useState(openedPhoneId);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const navigate = useNavigate();
 
@@ -76,11 +79,16 @@ export const ItemCard: FC = () => {
   }, [favouritePhones]);
 
   const loadPhoneDescription = async () => {
+    setIsLoaded(true);
+    setPhoneData(null);
+
     try {
       const phoneDataFromAPI: PhoneDescr = await getPhoneDescription(phoneId);
 
       setPhoneData(phoneDataFromAPI);
+      setIsLoaded(false);
     } catch {
+      setIsLoaded(false);
       throw new Error('something wrong')
     }
   };
@@ -129,6 +137,8 @@ export const ItemCard: FC = () => {
   return (
     <>
       <Path />
+      {isLoaded ? <Loader /> : <></>}
+
       {phoneData &&
         <div className='phone-card grid grid-mobile grid-tablet grid-desktop'>
           <h1 className='phone-card__title grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25'>
@@ -359,6 +369,12 @@ export const ItemCard: FC = () => {
             </div>
           </div>
       </div>}
+
+      <Carusel
+        orderType="price"
+        title="You may also like"
+        path='phones'
+      />
     </>
   )
 }

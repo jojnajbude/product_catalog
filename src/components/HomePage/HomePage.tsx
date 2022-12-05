@@ -29,22 +29,30 @@ export const HomePage: React.FC = () => {
   }
 
   return (
-    <div className="homepage">
-      <h1 className="homepage__title">
+    <div className="homepage grid grid-mobile grid-tablet grid-desktop">
+      <h1 className="homepage__title grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25">
         Welcome to Nice Gadgets store!
       </h1>
 
-      <ProductsSlider />
+      {/* <ProductsSlider /> */}
 
-      <Carusel phones={newModels} title="Brand new models" />
+      <Carusel
+        orderType="year"
+        title="Brand new models"
+        path='home'
+      />
 
-      <Categories
+      {/* <Categories
         phonesCount={phonesCount}
         tabletCount={tabletsCount}
         accessoriesCount={accessoriesCount}
-      />
+      /> */}
 
-      <Carusel phones={hotPrices} title="Hot prieces" />
+      <Carusel
+        orderType="price"
+        title="Hot prices"
+        path='home'
+      />
     </div>
   )
 }

@@ -1,7 +1,11 @@
-@import "../../styles/vars/vars.scss";
+@import '../../styles/vars/vars.scss';
+@import '../../styles/mixins/mixins';
 
 .Carusel {
+  max-width: 1136px;
   padding: 80px 0;
+  margin: 0 auto;
+  overflow: hidden;
 
   &__title {
     font-weight: 700;
@@ -45,12 +49,19 @@
 
   &__list {
     display: flex;
+    flex-wrap: nowrap;
     gap: 16px;
-    overflow: hidden;
   }
 
   &__wrap {
-    width: 1136px;
-    overflow: hidden;
+    width: calc(100vw - 32px);
+
+    @include tablet {
+      width: calc(100vw - 48px);
+    }
+
+    @include desktop {
+      width: calc(100vw - 64px);
+    }
   }
 }
