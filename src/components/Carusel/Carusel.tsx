@@ -7,7 +7,7 @@ import leftArrow from '../../images/arrow-left.svg';
 import rightArrow from '../../images/arrow-right.svg';
 import useWindowDimensions from '../../utils/customHooks/useWindowDimensions';
 import { getArrangedPhones } from '../../api/phoneDescription';
-import { Loader } from '../../Loader';
+import { Loader } from '../Loader';
 
 type Props = {
   title: string;
@@ -163,7 +163,6 @@ export const Carusel: React.FC<Props> = ({ orderType, title, path }) => {
                   key={phone.name}
                   path={path}
                   phone={phone}
-                  updateUserData={() => {}}
                 />
               ))}
             </ul>

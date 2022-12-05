@@ -13,10 +13,9 @@ import { Link } from 'react-router-dom';
 type Props = {
   path: string;
   phone: Phone;
-  updateUserData: () => void,
 };
 
-export const ProductCard: FC<Props> = ({ phone, updateUserData, path }) => {
+export const ProductCard: FC<Props> = ({ phone, path }) => {
   const {
     phoneId,
     name,
@@ -27,11 +26,13 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData, path }) => {
     ram,
     image,
   } = phone;
+
   const linkPath = useMemo(() => {
     return path === 'home'
       ? `/phones/${phoneId}`
       : `${phoneId}`
   }, [path])
+
   const imagePath = require(`../../images/${image}`);
   const [phoneCarts, setPhoneCarts] = useState<string[]>([]);
   const [favouritePhones, setFavouritePhones] = useState<string[]>([]);
@@ -64,11 +65,13 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData, path }) => {
       const filteredPhoneCarts = phoneCartsStorage().filter(itemId => itemId !== phoneId);
 
       localStorage.setItem('phoneCarts', filteredPhoneCarts.join(','));
+      window.dispatchEvent(new Event("storage"));
       setPhoneCarts(phoneCartsStorage());
     } else {
       const completePhoneCarts = [...phoneCartsStorage(), phoneId];
 
       localStorage.setItem('phoneCarts', completePhoneCarts.join(','));
+      window.dispatchEvent(new Event("storage"));
       setPhoneCarts(phoneCartsStorage());
     }
   }
@@ -77,15 +80,15 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData, path }) => {
       const filteredFavouritePhones = favouritePhonesStorage().filter(itemId => itemId !== phoneId);
 
       localStorage.setItem('favouritePhones', filteredFavouritePhones.join(','));
+      window.dispatchEvent(new Event("storage"));
       setFavouritePhones(favouritePhonesStorage());
     } else {
       const completeFavouritePhones = [...favouritePhonesStorage(), phoneId];
 
       localStorage.setItem('favouritePhones', completeFavouritePhones.join(','));
+      window.dispatchEvent(new Event("storage"));
       setFavouritePhones(favouritePhonesStorage());
     }
-
-    updateUserData();
   };
 
   useEffect(() => {
@@ -104,7 +107,6 @@ export const ProductCard: FC<Props> = ({ phone, updateUserData, path }) => {
           />
         </Link>
       </div>
-
 
       <Link to={linkPath} className="card__title">
         {name}

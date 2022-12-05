@@ -2,14 +2,10 @@
 
 .favourites {
   flex: 1;
-  margin: 0 16px 24px;
-
-  @include tablet {
-    margin: 0 24px 24px;
-  }
+  margin: 0 auto 24px;
 
   @include desktop {
-    margin: 0 32px 24px;
+    margin: 0 auto 24px;
   }
 
   &__title {
@@ -40,7 +36,6 @@
 
   &__wrapper {
     display: flex;
-    align-items: center;
     flex-direction: column;
   }
 

@@ -2,21 +2,27 @@
 @import '../../styles/mixins/mixins';
 
 .phones {
+  flex: 1;
+  margin: 0 auto 24px;
+
+  @include desktop {
+    margin: 0 auto 24px;
+  }
+
+
   display: flex;
   justify-content: center;
 }
 
 .phones-page {
-  flex: 1;
-  margin: 0 auto 24px;
   width: 100%;
 
   @include tablet {
-    margin: 0 24px 24px;
+    margin: 0 auto 24px;
   }
 
   @include desktop {
-    margin: 0 0 24px;
+    margin: 0 auto 24px;
   }
 }
 

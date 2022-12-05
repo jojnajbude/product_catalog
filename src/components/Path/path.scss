@@ -2,14 +2,10 @@
 @import '../../styles/vars/vars.scss';
 
 .path {
-  width: 1200px;
-  margin: 0 auto;
-  @include mobile {
-    margin: 0 16px 24px;
-  }
+  margin: 0 auto 24px;
 
   @include tablet {
-    margin: 0 32px 40px;
+    margin: 0 auto 40px;
   }
 
   white-space: nowrap;

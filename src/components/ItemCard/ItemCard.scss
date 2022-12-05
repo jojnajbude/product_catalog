@@ -1,9 +1,13 @@
 @import '../../styles/mixins/mixins';
 @import '../../styles/vars/vars.scss';
 
-.phone-card {
+.item-card {
   flex: 1;
-  margin: 0 16px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.phone-card {
   grid-template-rows: auto;
 
   @include tablet {
@@ -17,7 +21,7 @@
       font-weight: 800;
       font-size: 22px;
       line-height: 140%;
-      grid-row: 1/2;
+      grid-row: 2/3;
       margin-bottom: 32px;
     }
 
@@ -31,7 +35,7 @@
     max-height: 288px;
 
     @include mobile {
-      grid-row: 2/3;
+      grid-row: 3/4;
       margin-bottom: 16px;
     }
 

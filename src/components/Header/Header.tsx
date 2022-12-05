@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Link,
   NavLink,
@@ -7,10 +7,63 @@ import './Header.scss';
 import Logo from '../../images/Logo.png';
 import Cart from '../../images/cart.svg';
 import Like from '../../images/like.svg';
+import useLocalStorage from '../../utils/customHooks/useLocalStorage';
 
-export const Header:React.FC = () => {
-  const favoritesLength = 4;
-  const itemsInCart = 8;
+export const Header :React.FC = () => {
+  const [favouritesPhonesCount, setFavouritePhonesCount] = useState(0);
+  const [cartPhonesCount, setCartPhonesCount] = useState(0);
+  const favouritePhones = useLocalStorage('favouritePhones');
+  const phonesInCart = useLocalStorage('phoneCarts');
+
+  const getInitialData = () => {
+    const favouriteData = localStorage.getItem('favouritePhones');
+    const favouritesPhonesId = favouriteData
+      ? favouriteData.split(',')
+      : [];
+    const favouritesPhonesLength = favouritesPhonesId.length;
+
+    const cartData = localStorage.getItem('phoneCarts');
+    const cartPhonesId = cartData
+      ? cartData.split(',')
+      : [];
+    const cartPhonesLength = cartPhonesId.length;
+
+    if (favouriteData) {
+      setFavouritePhonesCount(favouritesPhonesLength);
+    }
+
+    if (cartData) {
+      setFavouritePhonesCount(cartPhonesLength);
+    }
+  }
+
+  const updateUserData = useCallback(() => {
+    const favouritesPhonesId = favouritePhones
+      ? favouritePhones.split(',')
+      : [];
+    const favouritesPhonesLength = favouritesPhonesId.length;
+
+    const cartPhonesId = phonesInCart
+      ? phonesInCart.split(',')
+      : [];
+    const cartPhonesLength = cartPhonesId.length;
+
+    if (favouritePhones) {
+      setFavouritePhonesCount(favouritesPhonesLength);
+    }
+
+    if (cartPhonesLength) {
+      setCartPhonesCount(cartPhonesLength)
+    }
+  }, [favouritePhones, phonesInCart]);
+
+  useEffect( () => {
+    getInitialData();
+  }, [])
+
+  useEffect(() => {
+    updateUserData();
+  }, [favouritePhones, phonesInCart]);
 
   return (
     <header className="header">
@@ -71,9 +124,9 @@ export const Header:React.FC = () => {
               className="header__link-img"
               alt="btn-like"
             />
-            {favoritesLength > 0 && (
+            {favouritesPhonesCount > 0 && (
               <div className="header__link-img-count">
-                {favoritesLength}
+                {favouritesPhonesCount}
               </div>
             )}
           </div>
@@ -86,9 +139,9 @@ export const Header:React.FC = () => {
               className="header__link-img"
               alt="link-img"
             />
-            {itemsInCart > 0 && (
+            {cartPhonesCount > 0 && (
               <div className="header__link-img-count">
-                {itemsInCart}
+                {cartPhonesCount}
               </div>
             )}
           </div>

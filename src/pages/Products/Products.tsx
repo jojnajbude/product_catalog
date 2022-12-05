@@ -4,7 +4,7 @@ import { Filter } from '../../components/Filter';
 import { Pagination } from '../../components/Pagination';
 import { Path } from '../../components/Path';
 import { ProductCard } from '../../components/ProductCard';
-import { Loader } from '../../Loader';
+import { Loader } from '../../components/Loader';
 import { Phone } from '../../types/Phone';
 import { SortBy, sortByOptions } from '../../types/SortyBy';
 import './Products.scss'
@@ -140,7 +140,6 @@ export const Products: React.FC = () => {
                           >
                           <ProductCard
                             phone={phone}
-                            updateUserData={() => {}}
                             path='phones'
                           />
                         </div>
