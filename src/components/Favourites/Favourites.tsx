@@ -66,16 +66,15 @@ export const Favourites: FC = () => {
                   grid-desktop-1-25"
                 >
                   <div className="favourites__list">
-                    {phones.map(phone => {
-                      return (
+                    {phones.map(phone => (
                       <div className='favorites__product-item' key={phone.id} >
                         <ProductCard
                           phone={phone}
                           updateUserData={updateUserData}
                           path='favourites'
                         />
-                      </div>);
-                    })}
+                      </div>)
+                    )}
                   </div>
                 </div>
               </>)}

@@ -39,10 +39,3 @@ export const getArrangedPhones = async(orderType: string) => {
     .then(async () => await axios.get<Phone[]>(BASE_URL+`?orderType=${orderType}`)
     .then((response) => response.data));
 };
-
-export const getFavouritesPhones = async(favourites: string) => {
-  console.log(BASE_URL+`?favourites=${favourites}`);
-
-  return await axios.get<Phone[]>(BASE_URL+`?favourites=${favourites}`)
-    .then((response) => response.data);
-};

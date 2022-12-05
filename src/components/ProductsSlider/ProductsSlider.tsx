@@ -39,7 +39,7 @@ export const ProductsSlider: React.FC = () => {
   }, [currentSlide]);
 
   return (
-    <section className="productsSlider">
+    <section className="productsSlider grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25">
       <div className="productsSlider__wrap">
         <button
           type="button"

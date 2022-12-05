@@ -19,7 +19,7 @@ export const Categories: React.FC<Props> = ({
   },
 ) => {
   return (
-    <section className="Categories">
+    <section className="Categories grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25">
       <h2 className="Categories__title">Shop by category</h2>
       <ul className="Categories__list">
 

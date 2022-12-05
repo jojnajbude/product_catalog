@@ -85,85 +85,88 @@ export const Products: React.FC = () => {
   }, [phones, sortBy, perPage, currentPage]);
 
   return (
-    <>
-      <Path />
+    <div className="phones">
+      <div>
+        <Path />
 
-      <div className="phones-page">
-        <section className='phones-page__products products grid grid-mobile grid-tablet grid-desktop'>
-          <h1 className='products__title grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25'>
-            Mobile phones
-          </h1>
+        <div className="phones-page">
+          <section className='phones-page__products products grid grid-mobile grid-tablet grid-desktop'>
+            <h1 className='products__title grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-10'>
+              Mobile phones
+            </h1>
 
-          {isLoaded
-            ? <Loader />
-            : (
-              <>
-                <div className='products__length grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-25'>
-                  {`${phones.length} models`}
-                </div>
-
-                {phones.length && <div className='products__filters grid-mobile-1-5 grid-tablet-1-8 grid-desktop-1-8'>
-                  <div className="products__filter products__filter--left">
-                    <Filter
-                      title='Sort by'
-                      optionsList={sortByOptions}
-                      selectedFilter={sortBy}
-                      handleFilterChange={handleTypeSortChange}
-                    />
+            {isLoaded
+              ? <Loader />
+              : (
+                <>
+                  <div className='products__length grid-mobile-1-5 grid-tablet-1-13 grid-desktop-1-3'>
+                    {`${phones.length} models`}
                   </div>
 
-                  <div className="products__filter products__filter--right">
-                    <Filter
-                      title='Items per page'
-                      optionsList={perPageOptions}
-                      selectedFilter={perPage}
-                      handleFilterChange={handleQuantityChange}
-                    />
-                  </div>
-                </div>}
+                  {phones.length && <div className='products__filters grid-mobile-1-5 grid-tablet-1-8 grid-desktop-1-9'>
+                    <div className="products__filter products__filter--left">
+                      <Filter
+                        title='Sort by'
+                        optionsList={sortByOptions}
+                        selectedFilter={sortBy}
+                        handleFilterChange={handleTypeSortChange}
+                      />
+                    </div>
 
-                <div className="
-                  products__cards-wrapper
-                  grid-mobile-1-5
-                  grid-tablet-1-13
-                  grid-desktop-1-25"
-                >
-                  <div className="products__container">
-                    {visiblePhones.map((phone) => {
+                    <div className="products__filter products__filter--right">
+                      <Filter
+                        title='Items per page'
+                        optionsList={perPageOptions}
+                        selectedFilter={perPage}
+                        handleFilterChange={handleQuantityChange}
+                      />
+                    </div>
+                  </div>}
 
-                      return (
-                        <div className={
-                          `products__product-container`
-                        }
-                          key={phone.id}
-                        >
-                        <ProductCard
-                          phone={phone}
-                          updateUserData={() => {}}
-                          path='phones'
-                        />
-                      </div>
-                      )
-                    })}
-                  </div>
-
-                  {phones.length && <div className='
-                    products__pagination-container
+                  <div className="
+                    products__cards-wrapper
                     grid-mobile-1-5
                     grid-tablet-1-13
-                    grid-desktop-1-25'
+                    grid-desktop-1-25"
                   >
-                    <Pagination
-                      total={phones.length}
-                      perPage={perPage}
-                      currentPage={currentPage}
-                      handlePageChange={handlePageChange}
-                    />
-                  </div>}
-                </div>
-              </>)}
-        </section>
+                    <div className="products__container">
+                      {visiblePhones.map((phone) => {
+
+                        return (
+                          <div className={
+                            `products__product-container`
+                          }
+                            key={phone.id}
+                          >
+                          <ProductCard
+                            phone={phone}
+                            updateUserData={() => {}}
+                            path='phones'
+                          />
+                        </div>
+                        )
+                      })}
+                    </div>
+
+                    {phones.length && <div className='
+                      products__pagination-container
+                      grid-mobile-1-5
+                      grid-tablet-1-13
+                      grid-desktop-1-25'
+                    >
+                      <Pagination
+                        total={phones.length}
+                        perPage={perPage}
+                        currentPage={currentPage}
+                        handlePageChange={handlePageChange}
+                      />
+                    </div>}
+                  </div>
+                </>
+              )}
+          </section>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
