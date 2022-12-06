@@ -8,7 +8,7 @@ import cn from 'classnames';
 import { Phone } from '../../types/Phone';
 
 import './ProductCard.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {
   path: string;
@@ -28,7 +28,7 @@ export const ProductCard: FC<Props> = ({ phone, path }) => {
   } = phone;
 
   const linkPath = useMemo(() => {
-    return path === 'home'
+    return path !== 'phones'
       ? `/phones/${phoneId}`
       : `${phoneId}`
   }, [path])

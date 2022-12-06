@@ -2,7 +2,7 @@ import { useMemo, FC, useEffect, useState, Fragment } from 'react';
 import classNames from 'classnames';
 import { getPhoneDescription } from '../../api/phoneDescription';
 import { PhoneDescr } from '../../utils/types/PhoneDescription';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { Path } from '../Path';
 import { Carusel } from '../Carusel';
 
@@ -11,7 +11,8 @@ export const ItemCard: FC = () => {
   const [phoneData, setPhoneData] = useState<PhoneDescr | null>(null);
   const [currentImage, setCurrentImage] = useState(0);
   const [phoneId, setPhoneId] = useState(openedPhoneId);
-
+  const [currentLocation, setCurrentLocation] = useState(openedPhoneId)
+  const location = useLocation();
   const navigate = useNavigate();
 
   const phoneCartsStorage = () => {
@@ -118,20 +119,33 @@ export const ItemCard: FC = () => {
   const handleColorChange = (currentColor: string, color: string) => {
     setPhoneId(current => (
       current.replace(currentColor, color)
-    ))
+    ));
   };
 
   const handleCapacityChange = (currentCapacity: string, capacity: string) => {
     setPhoneId(current => (
       current.replace(currentCapacity.toLowerCase(), capacity.toLowerCase())
-    ))
+    ));
   }
 
+  const compareLocation = () => {
+    const currentPath = location.pathname.slice(1).split('/');
+    const id = currentPath[currentPath.length - 1];
+
+    console.log(id, phoneId)
+    if (phoneId !== id) {
+      setPhoneId(id);
+    }
+  }
+
+  // useEffect(() => {
+  //   compareLocation();
+  // }, [location]);
 
   useEffect(() => {
     loadPhoneDescription();
     navigate(`/phones/${phoneId}`);
-  }, []);
+  }, [phoneId]);
 
   return (
     <div className='item-card'>
@@ -372,7 +386,7 @@ export const ItemCard: FC = () => {
       {phoneData && <Carusel
         orderType="price"
         title="You may also like"
-        path='phones'
+        path='itemCard'
       />}
     </div>
   )
