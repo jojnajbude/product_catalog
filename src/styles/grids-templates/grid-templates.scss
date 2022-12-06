@@ -19,7 +19,7 @@
 
 .grid-desktop {
 	@include desktop {
-		grid-template-columns: repeat(24, minmax(32px, 1fr));
+		grid-template-columns: repeat(24, 32px);
 	};
 }
 
